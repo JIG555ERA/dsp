@@ -1,0 +1,66 @@
+class Node:
+    def __init__(self, new_data):
+        self.data = new_data
+        self.next = None
+
+#Class to implement stack using a singly Linked list        
+class Stack:
+    def __init__(self):
+        #head of the linked list
+        self.head = None
+
+    #Function to check if the stack is empty
+    def is_empty(self):
+        #If head is None, the stack is empty
+        return self.head is None
+
+    #Function to push an element onto the stack
+    def push(self, new_data):
+
+        #Create a new node with given data
+        new_node = Node(new_data)
+
+        #Check if memory allocation for the new node failed
+        if not new_node:
+            print("\Stack Overflow")
+            return
+
+        #Link the new node to the current top node
+        new_node.next = self.head
+
+        #Update the top to the new node
+        self.head = new_node
+
+    #Function to remove the top element from the stack
+    def pop(self):
+
+        #Check for stack underflow
+        if self.is_empty():
+            print('\nStack Underflow')
+        else:
+            #Assign head to a temporary variable
+            temp = self.head
+            #Update the top to the next node
+            self.head = self.head.next
+            #Deallocate the memory of the old top node
+            del temp
+
+    #Function to return the top element of the stack
+    def peek(self):
+
+        #If stack is not epmty return the top element
+        if self.is_empty():
+            return None
+        else:
+            return self.head.data
+
+#Creating a stack
+stack = Stack()
+
+#Push elements onto the stack
+stack.push(11)
+stack.push(22)
+stack.push(33)
+stack.push(44)
+print('After push operations the topmost element is:')
+print(stack.peek())
