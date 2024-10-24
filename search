@@ -1,0 +1,61 @@
+# linear_search
+def linearSearch():
+    def create_search_array():
+        limit = int(input("Enter the no. of elements you want in your array:"))
+        arr1 = [None]*limit
+        for i in range(limit):
+            temp = i + 1
+            print("Enter the value for",(temp),"position:")
+            arr1[i] = int(input())
+
+        key1 = int(input("Enter the element you are looking for:"))
+        for i in range(len(arr1)):
+            if (arr1[i] == key1):
+                return i
+        return -1
+
+    def solution():
+        result = create_search_array()
+        if(result != -1):
+            print("Element is at index",(result+1))
+        else:
+            print("ELement not found")
+        
+    solution()
+    
+linearSearch()
+
+# binary search
+def binarySearch(arr, target, low, high):
+    if low <= high:
+        mid = (low + high) // 2
+
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] > target:
+            return binarySearch(arr, target, low, mid - 1)
+        else:
+            return binarySearch(arr, target, mid + 1, high)
+    else:
+        return -1
+
+def createArray():
+    limit = int(input("Enter the no. of elements you want in your array:"))
+    arr = [None]*limit
+    for i in range(len(arr)):
+        print("Enter the value for",(i+1),"position")
+        arr[i] = int(input())
+
+    target = int(input("Enter the element you are looking for:"))
+    low = 0
+    high = len(arr)-1
+    return binarySearch(arr,target,low,high)
+
+def solution():
+    result = createArray()
+    if(result != -1):
+        print("Element is at",(result+1),"position")
+    else:
+        print("ELement not found")
+
+solution()
