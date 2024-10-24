@@ -1,0 +1,89 @@
+# datetime adt
+import datetime
+
+class myDate:
+    def __init__(self,date,month,year):
+        self.date = date
+        self.month = month
+        self.year = year
+
+    def show_date(self):
+        print("Today's date:",self.date,'/',self.month,'/',self.year)
+
+    def show_day(self):
+        current_date = datetime.datetime.now()
+        day_of_week = current_date.strftime("%A")
+        print("Today is:",day_of_week)
+
+    def show_month(self):
+        print("Current month is",self.month)
+
+    def show_year(self):
+        print(self.year)
+
+    def is_leap_year(self):
+        if(self.year%4 == 0):
+            print(self.year,"is a leap Year")
+        else:
+            print(self.year,"is not a leap year")
+
+    def calc_age(self):
+        current_year = datetime.datetime.now().year
+        age = current_year - self.year
+        print("You are",age,"years old")
+
+date = int(input("Enter your date:"))
+month = int(input("Enter your month:"))
+year = int(input("Enter your year:"))
+m = myDate(date,month,year)
+m.show_date()
+m.show_day()
+m.show_month()
+m.show_year()
+m.is_leap_year()
+m.calc_age();
+
+# bag adt
+class Bag:
+    def __init__(self):
+        self.items = {}
+
+    def add(self, item):
+        if item in self.items:
+            self.items[item] += 1
+        else:
+            self.items[item] = 1
+
+    def remove(self, item):
+        if item in self.items:
+            if self.items[item] > 1:
+                self.items[item] -= 1
+            else:
+                del self.items[item]
+        else:
+            raise KeyError("Item not found")
+
+    def count(self, item):
+        return self.items.get(item, 0)
+
+    def size(self):
+        return sum(self.items.values())
+
+    def is_empty(self):
+        return self.size() == 0
+            
+bag = Bag()
+bag.add(10)
+bag.add(10)
+bag.add(20)
+bag.add('Kashmir')
+print(bag.items)
+bag.remove(10)
+print(bag.items)
+print(bag.count(10))
+print(bag.size())
+consists = bag.is_empty()
+if (consists == False):
+    print("It consists element")
+else:
+    print("It doesn't consists")
